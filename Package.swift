@@ -11,14 +11,20 @@ let package = Package(
             name: "DekiParser",
             targets: ["DekiParser"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/jpsim/Yams.git", "5.1.3"..<"6.0.0")
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "DekiParser"),
+            name: "DekiParser",
+            dependencies: ["Yams"]
+        ),
         .testTarget(
             name: "DekiParserTests",
-            dependencies: ["DekiParser"]
+            dependencies: ["DekiParser"],
+            resources: [.process("Resources")]
         ),
     ]
 )
